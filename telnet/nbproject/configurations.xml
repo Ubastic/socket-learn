@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <df root="." name="0">
+      <in>cerrexit.c</in>
+      <in>dcon.c</in>
+      <in>do_echo.c</in>
+      <in>do_noga.c</in>
+      <in>do_notsup.c</in>
+      <in>do_txbinary.c</in>
+      <in>errexit.c</in>
+      <in>fsmbuild.c</in>
+      <in>fsminit.c</in>
+      <in>recopt.c</in>
+      <in>scrgetc.c</in>
+      <in>scrinit.c</in>
+      <in>scrwrap.c</in>
+      <in>sofsm.c</in>
+      <in>sonotsup.c</in>
+      <in>soputc.c</in>
+      <in>sowrite.c</in>
+      <in>status.c</in>
+      <in>subend.c</in>
+      <in>subfsm.c</in>
+      <in>subopt.c</in>
+      <in>subtermtype.c</in>
+      <in>suspend.c</in>
+      <in>sync.c</in>
+      <in>tclient.c</in>
+      <in>tcout.c</in>
+      <in>telnet.c</in>
+      <in>tnabort.c</in>
+      <in>ttfsm.c</in>
+      <in>ttputc.c</in>
+      <in>ttwrite.c</in>
+      <in>ttysetup.c</in>
+      <in>unscript.c</in>
+      <in>will_notsup.c</in>
+      <in>will_termtype.c</in>
+      <in>will_txbinary.c</in>
+      <in>xput.c</in>
+    </df>
+    <logicalFolder name="ExternalFiles"
+                   displayName="重要文件"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+      <itemPath>nbproject/private/launcher.properties</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceFolderFilter>^(nbproject)$</sourceFolderFilter>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>false</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <codeAssistance>
+      </codeAssistance>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>.</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f Makefile</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath></executablePath>
+        </makeTool>
+        <preBuild>
+          <preBuildCommandWorkingDir>.</preBuildCommandWorkingDir>
+          <preBuildCommand></preBuildCommand>
+        </preBuild>
+      </makefileType>
+      <item path="cerrexit.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="dcon.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="do_echo.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="do_noga.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="do_notsup.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="do_txbinary.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="errexit.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="fsmbuild.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="fsminit.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="recopt.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="scrgetc.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="scrinit.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="scrwrap.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sofsm.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sonotsup.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="soputc.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sowrite.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="status.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="subend.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="subfsm.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="subopt.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="subtermtype.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="suspend.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sync.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="tclient.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="tcout.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="telnet.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="tnabort.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="ttfsm.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="ttputc.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="ttwrite.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="ttysetup.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="unscript.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="will_notsup.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="will_termtype.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="will_txbinary.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="xput.c" ex="false" tool="0" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

@@ -1,0 +1,2 @@
+/usr/bin/bash: -c: line 0: syntax error near unexpected token `('
+/usr/bin/bash: -c: line 0: `/cygdrive/D/Program Files (x86)/Dev-Cpp/MinGW32/bin/make.exe -f Makefile'
