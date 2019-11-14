@@ -23,11 +23,6 @@ main(int argc, char *argv[])
 	char	*host = "localhost";	/* host to use if none supplied	*/
 	char	*service = "ftp";	/* default service name		*/
 	char	filename[LINELEN+1]="";	/* buffer for one line of text	*/
-	if (argc !=3)
-	{
-	  perror("usage:receivefile filename <IP> ");
-	  exit(1);
-	}
 
 	switch (argc) {
 	case 1:
