@@ -1,4 +1,4 @@
-/* TCPechod.c - main, TCPechod */
+/* TCPftpd.c - main, TCPftpd */
 
 #define	_USE_BSD
 #include <sys/types.h>
@@ -22,7 +22,7 @@
 extern int	errno;
 
 void	reaper(int);
-int	TCPechod(int fd);
+int	TCPftpd(int fd);
 int	errexit(const char *format, ...);
 int	passiveTCP(const char *service, int qlen);
 
@@ -46,7 +46,7 @@ main(int argc, char *argv[])
 		service = argv[1];
 		break;
 		default:
-		errexit("usage: TCPechod [port]\n");
+		errexit("usage: TCPftpd [port]\n");
 	}
 
 	msock = passiveTCP(service, QLEN);
@@ -65,7 +65,7 @@ main(int argc, char *argv[])
 		case 0:		/* child */
 			(void) close(msock);
 			printf("connection received\n");
-			exit(TCPechod(ssock));
+			exit(TCPftpd(ssock));
 		default:	/* parent */
 			(void) close(ssock);
 			break;
@@ -76,11 +76,11 @@ main(int argc, char *argv[])
 }
 
 /*------------------------------------------------------------------------
- * TCPechod - echo data until end of file
+ * TCPftpd - receive a filename and send it back
  *------------------------------------------------------------------------
  */
 int
-TCPechod(int fd)
+TCPftpd(int fd)
 {
 	char    name[LINELEN+1];
 	char	buf[BUFSIZ];
@@ -97,6 +97,7 @@ TCPechod(int fd)
 			printf("fopen failed");
 			return;
 		}
+		/*
 		fseek(fp,0,SEEK_END);
 		long size = ftell(fp);
 		rewind(fp);
@@ -105,6 +106,7 @@ TCPechod(int fd)
 			printf("malloc failed");
 			return ;
 		}
+		*/
 		while((n=fread(buf,1,BUFSIZ,fp))>0){
 			if(n!=BUFSIZ && ferror(fp)){
 				perror("read file error");
@@ -130,5 +132,5 @@ reaper(int sig)
 	int	status;
 
 	while (wait3(&status, WNOHANG, (struct rusage *)0) >= 0)
-		/* empty */;
+	  printf("child process exit with %d",status);
 }

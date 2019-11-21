@@ -1,4 +1,4 @@
-/* TCPecho.c - main, TCPecho */
+/* TCPftp.c - main, TCPftp */
 
 #include <unistd.h>
 #include <stdlib.h>
@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <errno.h>
 
-int	TCPecho(const char *host, const char *service);
+int	TCPftp(const char *host, const char *service);
 int	errexit(const char *format, ...);
 int	connectTCP(const char *host, const char *service);
 
@@ -14,7 +14,7 @@ int	connectTCP(const char *host, const char *service);
 #define	LINELEN		128
 #define BUFSIZE        128
 /*------------------------------------------------------------------------
- * main - TCP client for ECHO service
+ * main - TCP client for tiny ftp service
  *------------------------------------------------------------------------
  */
 int
@@ -47,7 +47,7 @@ main(int argc, char *argv[])
 }
 
 /*------------------------------------------------------------------------
- * TCPecho - send input to ECHO service on specified host and print reply
+ * TCPftp - send filename to ftp service on specified host and save file
  *------------------------------------------------------------------------
  */
 int
