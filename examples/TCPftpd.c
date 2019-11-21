@@ -92,7 +92,20 @@ TCPechod(int fd)
 		if (cc < 0)
 			errexit("echo read: %s\n", strerror(errno));
 		fp = fopen(name,"rb");
-		while((n=fread(buf,sizeof(char),BUFSIZ,fp))>0){
+                if( NULL== fp)
+		{
+			printf("fopen failed");
+			return;
+		}
+		fseek(fp,0,SEEK_END);
+		long size = ftell(fp);
+		rewind(fp);
+		char* buffer = (char*)malloc(sizeof(char) * size);
+		if( NULL == buffer){
+			printf("malloc failed");
+			return ;
+		}
+		while((n=fread(buf,1,BUFSIZ,fp))>0){
 			if(n!=BUFSIZ && ferror(fp)){
 				perror("read file error");
 				exit(1);
