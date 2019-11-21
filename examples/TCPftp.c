@@ -25,9 +25,6 @@ main(int argc, char *argv[])
 	char	filename[LINELEN+1]="";	/* buffer for one line of text	*/
 
 	switch (argc) {
-	case 1:
-		host = "localhost";
-		break;
 	case 3:
 		host = argv[2];
 	case 2:
@@ -35,16 +32,16 @@ main(int argc, char *argv[])
 		break;
 		/* FALL THROUGH */
 	default:
-		fprintf(stderr, "usage:receivefile filename <IP> \n");
+		fprintf(stderr, "usage:TCPftp filename <IP> \n");
 		exit(1);
 	}
-        printf("%s",filename);
+        printf("%s\n",filename);
 	FILE *fp = fopen(filename,"wb");
 	if(fp==NULL){
-	    perror("can't open file");
+	    perror("can't open file\n");
 	    exit(1);
 	}
-	
+
 	TCPfile(host,service, filename,fp);
 	exit(0);
 }
@@ -65,13 +62,13 @@ TCPfile(const char *host, const char * service,char * filename,FILE *fp)
         outchars = strlen(filename);
 	(void) write(s, filename, outchars);
 	while(n = read(s, buff, BUFSIZE)){
-                printf("%s",buff);
+                /* printf("%s",buff); */
 		/* read file back */
 		if(fwrite(buff,sizeof(char),n,fp)!=n){
-		 perror("write file error");
+		 perror("write file error\n");
 		 exit(1);
 		}
-		printf("writing file");
+		printf("writing file...\n");
 		memset(buff,0,BUFSIZE);
 	}
 	if (n < 0){

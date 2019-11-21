@@ -64,7 +64,7 @@ main(int argc, char *argv[])
 		switch (fork()) {
 		case 0:		/* child */
 			(void) close(msock);
-			printf("receive connection");
+			printf("connection received\n");
 			exit(TCPechod(ssock));
 		default:	/* parent */
 			(void) close(ssock);
@@ -88,7 +88,7 @@ TCPechod(int fd)
 	int     n;
 	FILE *fp;
 	if (cc = read(fd, name, sizeof name)) {
-		printf("filename:%s",name);
+		printf("filename:%s\n",name);
 		if (cc < 0)
 			errexit("echo read: %s\n", strerror(errno));
 		fp = fopen(name,"rb");
@@ -100,9 +100,9 @@ TCPechod(int fd)
 			if (write(fd, buf, n) < 0)
 				errexit("echo write: %s\n", strerror(errno));
 			memset(buf,0,BUFSIZ);
-			printf("writing");
+			printf("writing...\n");
 		}
-		printf("server complete");
+		printf("server complete\n");
 	}
 	return 0;
 }
