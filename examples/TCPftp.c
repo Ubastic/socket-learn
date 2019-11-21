@@ -36,7 +36,7 @@ main(int argc, char *argv[])
 		exit(1);
 	}
         printf("%s\n",filename);
-	FILE *fp = fopen(filename,"ab");
+	FILE *fp = fopen(filename,"wb"); /* ab */
 	if(fp==NULL){
 	    perror("can't open file\n");
 	    exit(1);
@@ -68,7 +68,7 @@ TCPfile(const char *host, const char * service,char * filename,FILE *fp)
 		 perror("write file error\n");
 		 exit(1);
 		}
-		printf("writing file...\n");
+		printf("writing file...%d\n",n);
 		memset(buff,0,BUFSIZE);
 	}
 	if (n < 0){
