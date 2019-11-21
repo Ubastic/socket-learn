@@ -35,7 +35,7 @@ main(int argc, char *argv[])
 		fprintf(stderr, "usage:TCPftp filename <IP> \n");
 		exit(1);
 	}
-        printf("%s\n",filename);
+        printf("%s %s\n",filename,host);
 	FILE *fp = fopen(filename,"wb"); /* ab */
 	if(fp==NULL){
 	    perror("can't open file\n");

@@ -3,6 +3,7 @@
 #define	_USE_BSD
 #include <sys/types.h>
 #include <sys/signal.h>
+#include <bits/sigaction.h>
 #include <sys/socket.h>
 #include <sys/time.h>
 #include <sys/resource.h>
@@ -22,6 +23,9 @@
 extern int	errno;
 
 void	reaper(int);
+void    sig_zchild(int);
+void	ouch(int);
+void    sigg(int);
 int	TCPftpd(int fd);
 int	errexit(const char *format, ...);
 int	passiveTCP(const char *service, int qlen);
@@ -51,7 +55,13 @@ main(int argc, char *argv[])
 
 	msock = passiveTCP(service, QLEN);
 
-	(void) signal(SIGCHLD, reaper);
+/*	(void) signal(SIGCHLD, sig_zchild); */
+/*	signal(SIGCHLD, SIG_IGN);     */
+	struct sigaction act;
+	act.sa_handler = sigg;
+	act.sa_flags = 0;
+	sigemptyset(&act.sa_mask);
+	sigaction(SIGCHLD,&act,0);
 
 	while (1) {
 		alen = sizeof(fsin);
@@ -66,10 +76,11 @@ main(int argc, char *argv[])
 			(void) close(msock);
 			printf("connection received\n");
 			exit(TCPftpd(ssock));
+			printf("sub processnot die");
 		default:	/* parent */
 			(void) close(ssock);
 			break;
-			case -1:
+		case -1:
 			errexit("fork: %s\n", strerror(errno));
 		}
 	}
@@ -119,6 +130,9 @@ TCPftpd(int fd)
 		}
 		printf("server complete\n");
 	}
+        close(fp); /* close file */
+	close(fd); /* close socket */
+	printf("child should closed");
 	return 0;
 }
 
@@ -133,4 +147,23 @@ reaper(int sig)
 
 	while (wait3(&status, WNOHANG, (struct rusage *)0) >= 0)
 	  printf("child process exit with %d",status);
+}
+void sig_zchild(int sig)
+{
+    pid_t pid;
+    int stat;
+    while ((pid = waitpid(-1,&stat, WNOHANG)) > 0)
+        printf("child %d terminated\n",pid);
+    printf("sig_zchild exit");
+}
+void sigg(int sig)
+{
+    pid_t pid;
+    int stat;
+    pid = waitpid(-1,&stat,WNOHANG);
+    printf("%d",pid);
+}
+void ouch(int sig){
+	printf("got %d",sig);
+	wait(NULL);
 }
