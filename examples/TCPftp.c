@@ -22,6 +22,7 @@ main(int argc, char *argv[])
 {
 	char	*host = "localhost";	/* host to use if none supplied	*/
 	char	*service = "ftp";	/* default service name		*/
+	char    *service2 = "ftp-data";
 	char	filename[LINELEN+1]="";	/* buffer for one line of text	*/
 
 	switch (argc) {
@@ -42,37 +43,46 @@ main(int argc, char *argv[])
 	    exit(1);
 	}
 
-	TCPfile(host,service, filename,fp);
-	exit(0);
+	exit(TCPfile(host,service,service2, filename,fp));
 }
 
 /*------------------------------------------------------------------------
  * TCPftp - send filename to ftp service on specified host and save file
  *------------------------------------------------------------------------
  */
-int
-TCPfile(const char *host, const char * service,char * filename,FILE *fp)
+void
+TCPfile(const char *host, const char * service,char * service2,char * filename,FILE *fp)
 {
 
-	int	s, n;			/* socket descriptor, read count*/
+  int	s,s1, n;			/* socket descriptor, read count*/
 	int	outchars, inchars;	/* characters sent and received	*/
 	char buff[BUFSIZE] ={0};
 	s = connectTCP(host, service);
+	s1 = connectTCP(host, service2);
 	filename[LINELEN] = '\0';  /* insure line null-terminated	*/
         outchars = strlen(filename);
-	(void) write(s, filename, outchars);
-	while(n = read(s, buff, BUFSIZE)){
+	(void) send(s, filename, outchars,0);
+	while(n = recv(s1, buff, BUFSIZE,0)){
+		if(strcmp(buff,"NO")==0){
+			perror("no such file");
+			exit(0);
+		}
                 /* printf("%s",buff); */
 		/* read file back */
-		if(fwrite(buff,1,n,fp)!=n){
+		if(fwrite(buff,1,n,fp)!=n){ /* 1 means how many bytes peer wrt */
 		 perror("write file error\n");
 		 exit(1);
 		}
-		printf("writing file...%d\n",n);
+		if(n<BUFSIZE){
+			printf("end of file\n");
+			break;
+		}
 		memset(buff,0,BUFSIZE);
 	}
 	if (n < 0){
 			errexit("socket read failed: %s\n",
 			strerror(errno));
 	}
+	close(s1);
+	close(s);
 }
